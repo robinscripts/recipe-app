@@ -6,19 +6,19 @@ import {
   searchRecipes,
   getRecipeSummary,
   getFavouriteRecipesByIds,
-} from "./recipe-api.js";
+} from "./src/recipe-api.js";
 
 dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "recipe-app-db",
-  password: "robb69;",
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 db.connect();
 app.use(express.json());
